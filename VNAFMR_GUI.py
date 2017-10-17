@@ -44,7 +44,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             reS21_col = 7
             imS21_col = 8            
         if self.blue_cols_bool.isChecked():
-            print("Yellow Magnet")
+            print("Blue Magnet")
             field_col = 13
             reS21_col = 18
             imS21_col = 19  

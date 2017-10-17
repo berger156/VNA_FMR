@@ -212,8 +212,8 @@ def fitAll(f_min, f_max, f_min_lin, f_max_lin, field_col, reS21_col, imS21_col, 
             p0a.append(p0)            
         
             #lower bounds
-            A_lb = 0
-            Meff_lb = 0
+            A_lb = -np.inf
+            Meff_lb = -np.inf
             dH_lb = 0
             phi_lb = 0
             rC0_lb = -np.inf
