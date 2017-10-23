@@ -19,6 +19,14 @@ from numpy.linalg import inv
 from scipy import optimize
 from scipy.optimize import curve_fit
 
+import scipy.constants as const
+codata2014 = const.physical_constants
+hbar = codata2014['Planck constant over 2 pi'][0]
+mu_0 = 4.0*pi*1e-7
+mu_B = codata2014['Bohr magneton'][0]
+g_i = np.abs(codata2014['electron g factor'][0])
+gamma = codata2014['electron gyromag. ratio'][0]
+
 #turn interactive plotting off
 plt.ioff()
 
@@ -143,13 +151,7 @@ def fitAll(f_min, f_max, f_min_lin, f_max_lin, field_col, reS21_col, imS21_col, 
             imS21 = imS21[field>0]
             field = field[field>0]
             
-            #define constants
-            g_i = 2.1
-            mu_B = 9.274009994e-24 #Joules/Tesla
-            hbar = 6.6260693e-34/(2*pi) #Joule*seconds
-            gamma = g_i*mu_B/hbar
             f = freq[n-1]*1e9 #Hz
-            mu_0 = 4*pi*1e-7 #H/m
             Heff = (2*pi*f)/(gamma*mu_0)*(4*pi/1e3) #(4*pi/1e3) needed to convert Oe to A/m
             
             #correct S21 for complex offset
