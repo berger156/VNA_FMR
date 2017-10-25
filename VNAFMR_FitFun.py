@@ -484,11 +484,14 @@ def fitAll(f_min, f_max, f_min_lin, f_max_lin, field_col, reS21_col, imS21_col, 
     dH_lin = dH[mask]
     dH_err_lin = dH_err[mask]
     
+    #for consistency, need to calculate gamma based on result of Kittel fit
+    gamma_final = g_final*mu_B/hbar
+    
     damping_fit = dampingFit(freq_lin*1e9, dH_lin, dH_err_lin)
-    alpha_final = damping_fit[0][0]*gamma*mu_0/(4*pi)*(1e3/(4*pi))
+    alpha_final = damping_fit[0][0]*gamma_final*mu_0/(4*pi)*(1e3/(4*pi))
     dH_0_final = damping_fit[0][1]
     damping_err = np.sqrt(np.diag(damping_fit[1]))
-    alpha_final_err = damping_err[0]*gamma*mu_0/(4*pi)*(1e3/(4*pi))
+    alpha_final_err = damping_err[0]*gamma_final*mu_0/(4*pi)*(1e3/(4*pi))
     dH_0_final_err = damping_err[1]
     print("Damping fit results:")
     print("alpha =",alpha_final,"+/-",alpha_final_err)
